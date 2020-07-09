@@ -1,12 +1,11 @@
 # kafka_spike
 
 1. Install Kafka : https://medium.com/@Ankitthakur/apache-kafka-installation-on-mac-using-homebrew-a367cdefd273
-
 2. Create clone of this application and set the configurations.
    
-  Application 1:
+Application 1:
   
-   production: {
+  production: {
     clientId: "service A",
     brokers: ["localhost:9092"],
     producer: {
@@ -18,10 +17,9 @@
     },
   },
    
-  Application 2:
+Application 2:
    
-   Example: 
-     production: {
+  production: {
     clientId: "service B",
     brokers: ["localhost:9092"],
     producer: {
@@ -33,5 +31,8 @@
     },
   },
   
-3. Run applications on different port numbers.
+3. Run applications on different port numbers.(You can change the port number in package.json file)
+   yarn dev
+
+
  
