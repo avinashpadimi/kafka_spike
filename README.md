@@ -5,6 +5,7 @@
 2. Create clone of this application and set the configurations.
    
   Application 1:
+  
    production: {
     clientId: "service A",
     brokers: ["localhost:9092"],
