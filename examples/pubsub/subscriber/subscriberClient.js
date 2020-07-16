@@ -18,11 +18,7 @@ class SubscriberClient {
 
   process({topic,partition,message}) {
     // Identify the saga and trigger appropriate saga object.
-    // Each saga object will internally communicates with Service objects
-    console.log("this is the topic ", topic);
-    console.log("this is the message---2", message)
-    console.log("this is the message", message.payload)
-    
+    // Each saga object will internally communicates with Service objects 
     const {payload}  = message
     eventEmitter.emit(payload.type,{topic,payload})
   }

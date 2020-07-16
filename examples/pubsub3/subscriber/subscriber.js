@@ -28,7 +28,6 @@ const start = async (subscriberClient) => {
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
       try {
-      console.log("mess is ",message)
       parsedMessage = parseMessage({message})
       subscriberClient.process({topic,partition, message: parsedMessage.payload.message})
       }

@@ -7,26 +7,28 @@ var eventEmitter = new events.EventEmitter();
 
 const sagaHandler = async({topic,payload}) => {
     //Code to handle Order saga related events
-    console.log("Payment Service inside saga handler",payload)
+    console.log("Payment Service inside saga handler\n",payload)
     eventEmitter.emit(payload.event,{topic,payload})
 }
 
 const makePayment = ({topic,payload}) => {
   // Make a call to service object and create
-  const {status,orderDetails} = PaymentService.initiate(payload)
-  if (status){
+  const {status,payload: {orderDetails}} = PaymentService.initiate(payload)
+  if (status && orderDetails.id !== 'order_2'){
       // Decide what should be the next event to trigger
     payload.event = "Paid"
     publish(payload)
   }else {
     //Publish order creation failed event
-    orderDetails.event = "Failed"
+    payload.event = "Failed"
+    eventEmitter.emit("Failed",{payload})
     publish(payload)
   }
 }
 
 const rollback = ({topic,payload}) => {
     // OrderService will initiate a rollback
+    console.log("Initiate Payment service rollback")
     PaymentService.rollback(payload)
 }
 

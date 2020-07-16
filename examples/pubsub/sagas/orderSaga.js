@@ -7,7 +7,7 @@ var eventEmitter = new events.EventEmitter();
 
 const sagaHandler = async({topic,payload}) => {
     //Code to handle Order saga related events
-    console.log("Order Service: inside saga handler",payload)
+    console.log("Order Service: inside saga handler\n",payload)
     eventEmitter.emit(payload.event,{topic,payload})
 }
 
@@ -21,9 +21,9 @@ const createOrder = ({topic,payload}) => {
   const {status,orderDetails} = OrderService.create(payload)
   if (status){
       // Decide what should be the next event to trigger
+    console.log("---------Order has been created---------")
     orderDetails.event = "OrderCreated"
     orderDetails.sagaObject = sagaObject
-    console.log("order details are ", orderDetails)
     publish(orderDetails)
   }else {
     //Publish order creation failed event
@@ -34,11 +34,13 @@ const createOrder = ({topic,payload}) => {
 
 const dispatchProduct = ({topic,payload}) => {
     //Fire dispatch product event
+    console.log("----------Order Placed & Dispatched---------")
     payload.event = "OrderPlaced"
     publish(payload)
 }
 const rollback = ({topic,payload}) => {
     // OrderService will initiate a rollback
+    console.log("Initiated Order Service Rollback")
     OrderService.rollback(payload)
 }
 

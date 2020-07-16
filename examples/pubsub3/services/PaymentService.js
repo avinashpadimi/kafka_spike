@@ -1,7 +1,8 @@
 class PaymentService {
-    static initiate() {
+    static initiate(payload) {
         //Payment process will be initiated
-        return { status: true, oderDetails: {}}
+        console.log("---------Payment has been processed-----------")
+        return { status: true, payload}
     }
 
     static rollback() {
