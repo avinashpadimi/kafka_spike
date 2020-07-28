@@ -20,6 +20,7 @@ const makePayment = ({topic,payload}) => {
     publish(payload)
   }else {
     //Publish order creation failed event
+    console.log("Payment Service: Unknown Error...")
     payload.event = "Failed"
     eventEmitter.emit("Failed",{payload})
     publish(payload)
@@ -28,7 +29,7 @@ const makePayment = ({topic,payload}) => {
 
 const rollback = ({topic,payload}) => {
     // OrderService will initiate a rollback
-    console.log("Initiate Payment service rollback")
+    console.log("Paymnet Service: Initiate Payment service rollback...")
     PaymentService.rollback(payload)
 }
 

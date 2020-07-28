@@ -19,7 +19,7 @@ module.exports = async function (fastify, opts) {
     reply.send({ hello: "world" });
   });
 
-  fastify.get("/cancel_order", async function (request, reply) {
+  fastify.get("/error_flow", async function (request, reply) {
     payload = {
       type: "OrderSaga",
       event: "OrderCreate",

@@ -7,7 +7,7 @@ var eventEmitter = new events.EventEmitter();
 
 const sagaHandler = async({topic,payload}) => {
     //Code to handle Order saga related events
-    console.log("Order Service: inside saga handler\n",payload)
+    console.log("\nOrder Service: inside saga handler\n",payload)
     eventEmitter.emit(payload.event,{topic,payload})
 }
 
@@ -21,7 +21,7 @@ const createOrder = ({topic,payload}) => {
   const {status,orderDetails} = OrderService.create(payload)
   if (status){
       // Decide what should be the next event to trigger
-    console.log("---------Order has been created---------")
+    console.log("OrderService: Order Created...")
     orderDetails.event = "OrderCreated"
     orderDetails.sagaObject = sagaObject
     publish(orderDetails)
@@ -34,7 +34,7 @@ const createOrder = ({topic,payload}) => {
 
 const dispatchProduct = ({topic,payload}) => {
     //Fire dispatch product event
-    console.log("----------Order Placed & Dispatched---------")
+    console.log("Order Service: Order Placed & Dispatched...")
     payload.event = "OrderPlaced"
     publish(payload)
 }

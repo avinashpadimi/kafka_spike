@@ -4,7 +4,7 @@ const { kafka, CompressionTypes } = require("../kafka-bootstrap");
 const producer = kafka.producer();
 
 const start = async () => {
-  console.log("------------Starting Producer-----------");
+  console.log("Payment Service: Starting Producer...");
   await producer.connect();
 };
 

@@ -22,7 +22,7 @@ const parseMessage = ({message}) => {
 }
 
 const start = async (subscriberClient) => {
-  console.log("------------Starting Consumber-----------A")
+  console.log("Order Service: Starting Consumber...",subscriber.channels)
   await consumer.connect();
   await batchSubscribe();
   await consumer.run({
@@ -33,6 +33,7 @@ const start = async (subscriberClient) => {
       }
       catch(error){
         //We can push errors into other topic to track all the errors
+        //Separate class will be there to handle different types of errors
         console.log("error is",error)
       }
     },

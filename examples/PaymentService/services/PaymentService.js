@@ -1,7 +1,7 @@
 class PaymentService {
     static initiate(payload) {
         //Payment process will be initiated
-        console.log("---------Payment has been processed-----------")
+        console.log("Payment Service: Payment has been processed...")
         return { status: true, payload}
     }
 

@@ -22,7 +22,7 @@ const parseMessage = ({message}) => {
 }
 
 const start = async (subscriberClient) => {
-  console.log("------------Starting Consumber-----------A")
+  console.log("Payment Service: Starting Consumer...",subscriber.channels);
   await consumer.connect();
   await batchSubscribe();
   await consumer.run({
